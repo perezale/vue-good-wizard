@@ -11,10 +11,10 @@
     <div class="wizard__body">
       <div class="wizard__body__step"><slot :name="currentSlot"></slot></div>
       <div class="wizard__body__actions clearfix">
-        <a v-if="backEnabled" class="wizard__back pull-left" @click="goBack()"> <img src="../images/back.png" alt="next icon"> <span>Back</span> 
+        <a v-if="backEnabled" class="wizard__back pull-left" @click="goBack()"> <img src="../images/back.png" alt="next icon"> <span>Back</span>
         </a>
         <a v-if="currentStep != steps.length - 1" class="wizard__next pull-right" @click="goNext()">
-          <span>Next</span> <img src="../images/next.png" alt="next icon">
+          <span>{{nextStepLabel}}</span> <img src="../images/next.png" alt="next icon">
         </a>
         <a v-if="currentStep == steps.length - 1" class="wizard__next pull-right final-step" @click="goNext()">
           {{finalStepLabel}}
@@ -31,6 +31,7 @@ export default {
 
   props: {
     steps: {},
+    nextStepLabel: {default 'Next'}
     finalStepLabel: {default: 'Save'},
     onNext: {},
     onBack: {},
@@ -100,7 +101,7 @@ export default {
   clear: both;
 }
 
-/* Header Steps 
+/* Header Steps
 *******************************/
 .wizard {
   position: relative;
@@ -169,7 +170,7 @@ export default {
   font-weight: bold;
 }
 
-/* Wizard body 
+/* Wizard body
 *******************************/
 .wizard__body{
   margin-top:  30px;
@@ -205,7 +206,7 @@ export default {
   transition: left 0.3s;
 }
 
-/* Wizard body 
+/* Wizard body
 *******************************/
 .wizard__body__actions{
   position:  absolute;
