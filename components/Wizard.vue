@@ -11,7 +11,7 @@
     <div class="wizard__body">
       <div class="wizard__body__step"><slot :name="currentSlot"></slot></div>
       <div class="wizard__body__actions clearfix">
-        <a v-if="backEnabled" class="wizard__back pull-left" @click="goBack()"> <img src="../images/back.png" alt="next icon"> <span>Back</span>
+        <a v-if="backEnabled" class="wizard__back pull-left" @click="goBack()"> <img src="../images/back.png" alt="next icon"> <span>{{previousStepLabel}}</span>
         </a>
         <a v-if="currentStep != steps.length - 1" class="wizard__next pull-right" @click="goNext()">
           <span>{{nextStepLabel}}</span> <img src="../images/next.png" alt="next icon">
@@ -31,6 +31,7 @@ export default {
 
   props: {
     steps: {},
+    previousStepLabel: {default: 'Previous'},
     nextStepLabel: {default: 'Next'},
     finalStepLabel: {default: 'Save'},
     onNext: {},
